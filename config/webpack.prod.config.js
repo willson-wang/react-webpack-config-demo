@@ -26,11 +26,11 @@ const config = merge(baseConfig, {
     publicPath: '/'
   },
   optimization: {
-    minimize: false,
+    minimize: true,
     splitChunks: {
       chunks: 'all',
       minSize: 1024 * 100,
-      minChunks: 3,
+      minChunks: 1,
       maxSize: 307200,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
@@ -48,17 +48,12 @@ const config = merge(baseConfig, {
           priority: -20,
           reuseExistingChunk: true,
           name: 'common'
-        },
-        // react: {
-        //   test: /[\\\/]node_modules[\\\/](core-js|react.*|redux.*|props-type|immer|history|@reduxjs\/toolkit)[\\\/]/,
-        //   priority: 0,
-        //   reuseExistingChunk: true,
-        //   name: 'react',
-        //   minSize: 0
-        // }
+        }
       }
     },
-    runtimeChunk: false,
+    runtimeChunk: {
+      name: 'runtime'
+    },
     emitOnErrors: true,
     minimizer: [
       new TerserPlugin(
@@ -132,5 +127,4 @@ const config = merge(baseConfig, {
   ],
 });
 
-console.log('config', config.optimization);
 module.exports = config
