@@ -35,7 +35,7 @@ const config = merge(baseConfig, {
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
       automaticNameDelimiter: '~',
-      cacheGroups: {
+      cacheGroups: { // 设置chunk提取方式
         'default': false,
         vendors: {
           test: /[\\\/]node_modules[\\\/]/,
@@ -56,6 +56,7 @@ const config = merge(baseConfig, {
     },
     emitOnErrors: true,
     minimizer: [
+      // js压缩插件
       new TerserPlugin(
         {
           parallel: true,
@@ -75,6 +76,7 @@ const config = merge(baseConfig, {
           }
         }
       ),
+      // css压缩插件
       new CssMinimizerPlugin(
         {
           parallel: true
@@ -83,12 +85,14 @@ const config = merge(baseConfig, {
     ]
   },
   plugins: [
+    // css提取插件
     new MiniCssExtractPlugin(
       {
-        filename: 'css/[name].[contenthash].css',
-        chunkFilename: 'css/[name].[contenthash].css'
+        filename: 'css/[name].[chunkhash].css',
+        chunkFilename: 'css/[name].[chunkhash].css'
       }
     ),
+    // 清除上一次构建产物
     new CleanWebpackPlugin(
       {
         dry: false
@@ -98,7 +102,7 @@ const config = merge(baseConfig, {
       {
         patterns: [
           {
-            from: resolveDir('public'),
+            from: resolveDir('public'), // 将public目录下的内容copy到dist
             to: resolveDir('dist'),
             globOptions: {
               ignore: [

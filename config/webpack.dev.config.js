@@ -12,19 +12,19 @@ const publicPath = '/'
 
 module.exports = merge(baseConfig, {
   mode: 'development',
-  devtool: 'source-map',
-  cache: {
+  devtool: 'source-map', // 设置生成source-map方式
+  cache: { // 设置缓存方式
     type: 'filesystem',
     name: 'dev-cache',
     version: 'development',
   },
-  output: {
+  output: { // 设置输出
     path: resolveDir('dist'),
     filename: 'js/[name].js',
     chunkFilename: 'chunk/[name].js',
     publicPath
   },
-  devServer: {
+  devServer: { // 设置开发服务配置
     static: {
       directory: path.join(__dirname, 'public'),
       publicPath
@@ -56,6 +56,7 @@ module.exports = merge(baseConfig, {
         template: resolveDir('public/index.html'),
       }
     ),
+    // react热更新插件
     new ReactRefreshPlugin(
       {
         overlay: false,

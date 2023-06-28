@@ -31,7 +31,7 @@ const postcssLoader = {
 module.exports = {
   resolve: {
     symlinks: true,
-    alias: {
+    alias: { // 设置别名
       process: 'process/browser',
       '@': resolveDir('src'),
       '@assets': resolveDir('src/assets'),
@@ -58,6 +58,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // 处理css最终生效的方式
       {
         test: /\.(css|less|s[a|c]ss)(\?.*)?$/,
         use: [
@@ -66,6 +67,7 @@ module.exports = {
           }
         ]
       },
+      // 处理css
       {
         test: /\.css$/,
         use: [
@@ -73,6 +75,7 @@ module.exports = {
           postcssLoader
         ]
       },
+      // 处理less
       {
         test: /\.less$/,
         use: [
@@ -88,6 +91,7 @@ module.exports = {
           }
         ]
       },
+      // 处理sass
       {
         test: /\.s[a|c]ss$/,
         use: [
@@ -98,6 +102,7 @@ module.exports = {
           }
         ]
       },
+      // 处理ts、js、tsx、jsx
       {
         test: /\.[tj]sx?$/i,
         exclude: [
@@ -139,6 +144,7 @@ module.exports = {
           }
         ]
       },
+      // 处理图片
       {
         test: /\.(png|jpe?g|gif|bpm|svg|webp)(\?.*)?$/,
         type: 'asset',
@@ -151,6 +157,7 @@ module.exports = {
           filename: 'image/[name].[hash][ext]'
         }
       },
+      // 处理字体
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         type: 'asset',
@@ -163,6 +170,7 @@ module.exports = {
           filename: 'static/fonts/[name].[hash][ext]'
         }
       },
+      // 处理视频
       {
         test: /\.(mp4|webm|ogg|mp3|m4a|wav|flac|aac)(\?.*)?$/,
         type: 'asset',
@@ -175,10 +183,6 @@ module.exports = {
           filename: 'static/media/[name].[hash][ext]'
         }
       },
-      {
-        resourceQuery: /raw/,
-        type: 'asset/source'
-      }
     ]
   },
   plugins: [
@@ -206,6 +210,9 @@ module.exports = {
     app: [
       resolveDir('src/app')
     ]
+  },
+  stats: {
+    hash: true,
   }
 }
 
