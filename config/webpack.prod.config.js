@@ -23,7 +23,7 @@ const config = merge(baseConfig, {
     path: resolveDir('dist'),
     filename: 'js/[name].[chunkhash].js',
     chunkFilename: 'chunk/[name].[chunkhash].js',
-    publicPath: '/'
+    publicPath: './'
   },
   optimization: {
     minimize: true,
