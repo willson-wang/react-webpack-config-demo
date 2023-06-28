@@ -59,7 +59,7 @@ react + typescript + webpack5
 
 ### 克隆仓库
  
-git clone git@github.com:willson-wang/webpack-plugin-demo.git
+git clone git@github.com:willson-wang/react-webpack-config-demo.git
  
 ### 安装依赖
  
