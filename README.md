@@ -1,6 +1,6 @@
 ## 简介（Introduction)
 
-webpack插件使用demo
+手写基于react项目的webpack配置demo，稍微修改之后可以直接在生产项目中使用
 
 ## 技术栈（Scheme）
 
@@ -10,14 +10,15 @@ react + typescript + webpack5
 
 ```js
 .
+├── LICENSE
 ├── README.md
-├── babel.config.js
 ├── config
-│   └── webpack.config.js
+│   ├── webpack.base.config.js // 公共配置
+│   ├── webpack.dev.config.js  // 开发环境配置
+│   └── webpack.prod.config.js // 生产环境配置
 ├── global.d.ts
 ├── package.json
 ├── pnpm-lock.yaml
-├── postcss.config.js
 ├── public
 │   ├── favicon.ico
 │   └── index.html
@@ -38,11 +39,6 @@ react + typescript + webpack5
 │   │   └── routeWithSubRoutes.tsx
 │   ├── pages
 │   │   ├── home
-│   │   │   ├── components
-│   │   │   │   ├── header.css
-│   │   │   │   ├── header.module.css
-│   │   │   │   ├── header.module.less
-│   │   │   │   └── header.tsx
 │   │   │   ├── index.less
 │   │   │   └── index.tsx
 │   │   └── my
@@ -67,18 +63,15 @@ pnpm install
  
 ### 构建模式
 
-正常构建
+开发环境
+```
+pnpm dev
+```
+
+生产环境
 ```
 pnpm build
 ```
 
-开启loader与plugin耗时统计
-```
-pnpm build:speed
-```
 
-开启构建产物大小分析
-```
-pnpm build:analyzer
-```
 
